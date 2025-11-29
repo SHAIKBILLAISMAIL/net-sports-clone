@@ -2,11 +2,11 @@ import { notFound } from "next/navigation";
 import { GameLauncher } from "@/components/sections/game-launcher";
 
 interface PageProps {
-  params: { id: string; mode: string };
+  params: Promise<{ id: string; mode: string }>;
 }
 
-export default function CrashGamePlayerPage({ params }: PageProps) {
-  const { id, mode } = params;
+export default async function CrashGamePlayerPage({ params }: PageProps) {
+  const { id, mode } = await params;
   if (!id || !mode) return notFound();
 
   return (
